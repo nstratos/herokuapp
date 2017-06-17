@@ -78,7 +78,7 @@ func (app *App) showProducts(w http.ResponseWriter, r *http.Request) {
 
 func (app *App) addProduct(w http.ResponseWriter, r *http.Request) {
 	name := r.FormValue("name")
-	if _, err := app.db.Exec("INSERT INTO products VALUES (?, now())", name); err != nil {
+	if _, err := app.db.Exec("INSERT INTO products VALUES ($1, now())", name); err != nil {
 		http.Error(w, fmt.Sprintf("Error adding product: %q", err), http.StatusInternalServerError)
 		return
 	}
