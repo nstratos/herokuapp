@@ -53,17 +53,17 @@ func (app *App) serveHome(w http.ResponseWriter, r *http.Request) {
 }
 
 func (app *App) showProducts(w http.ResponseWriter, r *http.Request) {
-	rows, err := app.db.Query("SELECT FROM products")
+	rows, err := app.db.Query("SELECT name, created FROM products")
 	if err != nil {
 		http.Error(w, fmt.Sprintf("Error reading products: %q", err), http.StatusInternalServerError)
 		return
 	}
 	defer rows.Close()
 
-	products := make([]Product, 0)
+	products := make([]*Product, 0)
 	for rows.Next() {
-		var product Product
-		if err := rows.Scan(&product); err != nil {
+		var product *Product
+		if err := rows.Scan(product.Name, product.Created); err != nil {
 			http.Error(w, fmt.Sprintf("Error scanning products: %q", err), http.StatusInternalServerError)
 			return
 		}
