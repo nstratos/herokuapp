@@ -62,12 +62,12 @@ func (app *App) showProducts(w http.ResponseWriter, r *http.Request) {
 
 	products := make([]*Product, 0)
 	for rows.Next() {
-		var product *Product
-		if err := rows.Scan(product.Name, product.Created); err != nil {
+		var product Product
+		if err := rows.Scan(&product.Name, &product.Created); err != nil {
 			http.Error(w, fmt.Sprintf("Error scanning products: %q", err), http.StatusInternalServerError)
 			return
 		}
-		products = append(products, product)
+		products = append(products, &product)
 	}
 
 	if err := json.NewEncoder(w).Encode(products); err != nil {
