@@ -1,6 +1,19 @@
 {
 	"comment": "",
 	"ignore": "test",
-	"package": [],
+	"package": [
+		{
+			"checksumSHA1": "WEQZdpNnu8s3ykJMobevACBYmxQ=",
+			"path": "github.com/lib/pq",
+			"revision": "8837942c3e09574accbc5f150e2c5e057189cace",
+			"revisionTime": "2017-06-03T22:54:54Z"
+		},
+		{
+			"checksumSHA1": "5qgm3bboLzPqwTE8EVtNw/PPpGw=",
+			"path": "github.com/lib/pq/oid",
+			"revision": "8837942c3e09574accbc5f150e2c5e057189cace",
+			"revisionTime": "2017-06-03T22:54:54Z"
+		}
+	],
 	"rootPath": "github.com/nstratos/herokuapp"
 }
