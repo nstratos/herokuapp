@@ -39,6 +39,7 @@ func main() {
 	http.Handle("/", http.HandlerFunc(app.serveHome))
 	http.Handle("/add", http.HandlerFunc(app.addProduct))
 	http.Handle("/products", http.HandlerFunc(app.showProducts))
+	http.Handle("/upload", http.HandlerFunc(app.serveUploadPicture))
 
 	log.Fatal(http.ListenAndServe(":"+port, nil))
 }
@@ -84,3 +85,26 @@ func (app *App) addProduct(w http.ResponseWriter, r *http.Request) {
 	}
 	w.Write([]byte("success"))
 }
+
+func (app *App) handleUploadPicture(w http.ResponseWriter, r *http.Request) {
+
+}
+
+func (app *App) serveUploadPicture(w http.ResponseWriter, r *http.Request) {
+	w.Write([]byte(uploadPictureTemplate))
+}
+
+const uploadPictureTemplate = `
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Upload file</title>
+</head>
+
+<body>
+<input name="file" type="file" accept="image/*" multiple>
+</body>
+
+</html>
+`
